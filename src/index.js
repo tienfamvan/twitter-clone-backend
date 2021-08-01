@@ -3,6 +3,7 @@ import cors from "cors";
 import logger from "morgan";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import routes from "./routes/index.js";
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ app.use(cors());
 
 // morgan logger for dev
 app.use(logger("dev"));
+
+app.use("/api", routes);
 
 app.use((req, res) => res.status(404).json({ error: "Route not found" }));
 
